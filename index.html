@@ -1,79 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Invitation</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            background-color: #ffe4e1;
-            margin: 0;
-            overflow: hidden;
-            text-align: center;
-        }
-        h1 { color: #d63384; font-size: 2rem; margin-bottom: 30px; }
-        .buttons { position: relative; width: 100%; height: 50px; display: flex; justify-content: center; gap: 20px; }
-        button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 10;
-        }
-        #yesBtn { background-color: #ff69b4; color: white; }
-        #noBtn {
-            background-color: #ffffff;
-            color: #d63384;
-            position: absolute; /* REQUIRED for the button to move */
-            transition: 0.1s;
-        }
-    </style>
+  <title>Just for You ☕💖</title>
+  <style>
+    body {
+      background: linear-gradient(#ffe6f0, #fff);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      overflow: hidden;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      color: #ff4d88;
+    }
+    p {
+      font-size: 18px;
+      color: #444;
+      line-height: 1.6;
+    }
+    button {
+      padding: 14px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 14px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .yes {
+      background: #ff4d88;
+      color: white;
+    }
+    .talk {
+      background: #ffe6f0;
+      color: #ff4d88;
+    }
+    .heart {
+      position: absolute;
+      color: #ff4d88;
+      animation: float 6s infinite;
+      font-size: 18px;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-800px); opacity: 0; }
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1 id="question">Cold Coffee Kudikka polama? ❤️</h1>
+<div class="card">
+  <h1>Hey 💖</h1>
+  <p>
+    Sibi....Sibi...Sibi....<br><br>
+    Cold Coffee Kudikka Polamma?<br>
     
-    <div class="buttons">
-        <button id="yesBtn">Yes!</button>
-        <button id="noBtn">No</button>
-    </div>
+    Nee vandhu dhaa aganum heheh 😊
+  </p>
 
-    <script>
-        const noBtn = document.getElementById('noBtn');
-        const yesBtn = document.getElementById('yesBtn');
-        const question = document.getElementById('question');
+  <button class="yes"
+    onclick="window.location.href='https://wa.me/917994302898?text=Yes!!%20Cold%20coffee%20with%20you%20sounds%20really%20nice%20☕💖'">
+    YES ☕💖
+  </button>
 
-        // Logic to make the "No" button jump
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        });
+  <button class="Yes"
+    onclick="window.location.href='https://wa.me/917994302898?text=Hey%20this%20was%20really%20sweet%20😊%20Let’s%20talk'">
+    YES 😊
+  </button>
+</div>
 
-        // WhatsApp Redirect
-        yesBtn.addEventListener('click', () => {
-            question.innerHTML = "Yay! See you soon! 🥰";
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+<script>
+  for (let i = 0; i < 20; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+  }
+</script>
 
-            // REPLACE THE ZEROS BELOW WITH YOUR REAL NUMBER
-            // Format: 91XXXXXXXXXX (No + or spaces)
-            const phone = "917994302898"; 
-            const message = "Yes! Cold coffee kudikka polama! ☕❤️";
-            
-            setTimeout(() => {
-                window.location.href = https://wa.me/${phone}?text=${encodeURIComponent(message)};
-            }, 1500);
-        });
-    </script>
 </body>
 </html>
