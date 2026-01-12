@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I have a question...</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 { 
+            color: #d63384; 
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .buttons { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+
+        #yesBtn { 
+            background-color: #ff69b4; 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            z-index: 10;
+        }
+
+        #noBtn {
+            background-color: #ffffff;
+            color: #d63384;
+            position: absolute; /* Needed for the "jump" effect */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn:active { transform: scale(0.9); }
+    </style>
+</head>
+<body>
+
+    <h1 id="question">Cold Coffee Kudikka polama? ❤️</h1>
+    
+    <div class="buttons">
+        <button id="yesBtn">Yes!</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const question = document.getElementById('question');
+
+        // 1. Logic to make the "No" button run away
+        noBtn.addEventListener('mouseover', () => {
+            // Calculate random position within screen bounds
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = ${x}px;
+            noBtn.style.top = ${y}px;
+        });
+
+        // 2. Logic for when they click "Yes"
+        yesBtn.addEventListener('click', () => {
+            // Update the UI
+            question.innerHTML = "Yay! Sending me a message... 🥰";
+            noBtn.style.display = 'none';
+            
+            // Launch Confetti!
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff69b4', '#ff1493', '#ffffff']
+            });
+
+            // 3. REDIRECT TO WHATSAPP
+            // REPLACE "15551234567" with your actual number (include country code)
+            const myPhoneNumber = "917994302898"; 
+            const myMessage = "Polameeee ❤️";
+            
+            setTimeout(() => {
+                window.location.href = https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(myMessage)};
+            }, 2000); // 2 second delay so they see the confetti
+        });
+    </script>
+</body>
+</html>
