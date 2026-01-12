@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I have a question...</title>
+    <title>Cold Coffee?</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body {
@@ -18,47 +18,26 @@
             overflow: hidden;
             text-align: center;
         }
-
-        h1 { 
-            color: #d63384; 
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-
-        .buttons { 
-            display: flex; 
-            gap: 20px; 
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
+        h1 { color: #d63384; font-size: 2rem; margin-bottom: 30px; }
+        .buttons { position: relative; width: 100%; height: 50px; }
         button {
             padding: 15px 30px;
             font-size: 1.2rem;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.2s;
             font-weight: bold;
         }
-
         #yesBtn { 
             background-color: #ff69b4; 
             color: white; 
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            z-index: 10;
         }
-
         #noBtn {
             background-color: #ffffff;
             color: #d63384;
-            position: absolute; /* Needed for the "jump" effect */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: absolute; /* This allows it to jump */
+            transition: 0.1s;
         }
-
-        #yesBtn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
@@ -75,38 +54,31 @@
         const yesBtn = document.getElementById('yesBtn');
         const question = document.getElementById('question');
 
-        // 1. Logic to make the "No" button run away
+        // FIXED: Improved "No" button jump logic
         noBtn.addEventListener('mouseover', () => {
-            // Calculate random position within screen bounds
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            
-            noBtn.style.left = ${x}px;
-            noBtn.style.top = ${y}px;
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         });
 
-        // 2. Logic for when they click "Yes"
+        // FIXED: Direct WhatsApp Redirect
         yesBtn.addEventListener('click', () => {
-            // Update the UI
-            question.innerHTML = "Yay! Sending me a message... 🥰";
-            noBtn.style.display = 'none';
+            question.innerHTML = "Yay! See you soon! 🥰";
             
-            // Launch Confetti!
             confetti({
                 particleCount: 150,
                 spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff69b4', '#ff1493', '#ffffff']
+                origin: { y: 0.6 }
             });
 
-            // 3. REDIRECT TO WHATSAPP
-            // REPLACE "15551234567" with your actual number (include country code)
-            const myPhoneNumber = "917994302898"; 
-            const myMessage = "Polameeee ❤️";
+            // CHANGE THIS TO YOUR NUMBER (e.g., 919876543210)
+            const phone = "917994302898"; 
+            const message = "Yes! Cold coffee kudikka polama! ☕❤️";
             
             setTimeout(() => {
-                window.location.href = https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(myMessage)};
-            }, 2000); // 2 second delay so they see the confetti
+                window.location.href = https://wa.me/${phone}?text=${encodeURIComponent(message)};
+            }, 1500);
         });
     </script>
 </body>
